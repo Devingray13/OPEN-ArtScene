@@ -1,0 +1,29 @@
+body {
+    height: 100vh;
+}
+
+img .activator {
+    width: 50em;
+}
+
+.card {
+    width: 30em;
+    margin: 10em auto;
+}
+
+.title {
+    text-align: center;
+    padding-left: 10px;
+    color: rgb(230,200,30);
+}
+
+nav {
+    height: 10%;
+    background: rgb(20,20,20);
+}
+
+
+#map {
+       height: 400px;
+       width: 100%;
+      }
