@@ -123,34 +123,3 @@ $(function() {
 
     });
 })
-// $.get('https://graph.facebook.com/DBSgallery/events?access_token=EAAbctZBqg1F4BAE7t4IYvZACbqt2D2T2YlftA7eBTZCBhh2SmFQiWP9RQlJq8s8CyMRqXiXfvBeWFamHnzWQ2EJQ4OVhzhGyJfSPUpEnkDhAuMnqTnScMyjhbL1EPUS8lkBzxjgWOyhkZBFBtZB3bDz05xkZCG6XwZD').then(function(response) {
-//     let events = response.data
-//     console.log(events[1])
-//     let actualPhoto;
-//
-//     $('.card-title').text(events[1].name)
-//     getEventPhoto().then(function(response) {
-//         console.log(response)
-//         let photo = response.data[0].images[0].source
-//         // actualPhoto = $('<img src ="' + photo + '"></img>')
-//         // $('.main').prepend(actualPhoto)
-//         $('.activator').attr('src', photo);
-//     })
-//     getEventDescription().then(function(response){
-//         console.log(response)
-//
-//         let descripStart = response.description.indexOf('*')
-//         let description = response.description.slice(descripStart+1, response.description.length)
-//
-//         $('.card-reveal p').text(description)
-//     })
-//
-// })
-//
-// function getEventPhoto() {
-//     return $.get('https://graph.facebook.com/1082598335202100/photos?access_token=EAACEdEose0cBAPHUngcx8OmHmKKZBpzE5DlZAga3PfKcMMyXuqAZArGFPuJrFvNMi1FDpwRCTVELtn7Vxg1xk1GBvJlZCSOxyxcBcv66K3ZBbCPtKMZAIkGK0mCVk74AQfm6TdgPT3XC8ZAVFzZCE4oZBeqSZAx4xdBC1fTqy84mGzhNSsyj1KCMW1aPAmXxYAA4gZD')
-// }
-//
-// function getEventDescription(){
-//     return $.get('https://graph.facebook.com/1082598335202100?access_token=EAAbctZBqg1F4BAE7t4IYvZACbqt2D2T2YlftA7eBTZCBhh2SmFQiWP9RQlJq8s8CyMRqXiXfvBeWFamHnzWQ2EJQ4OVhzhGyJfSPUpEnkDhAuMnqTnScMyjhbL1EPUS8lkBzxjgWOyhkZBFBtZB3bDz05xkZCG6XwZD')
-// }
