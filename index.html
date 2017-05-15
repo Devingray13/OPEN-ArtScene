@@ -1,10 +1,118 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
 
-    </body>
+<head>
+    <meta charset="utf-8">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <title>OPEN : ArtScene / Denver</title>
+</head>
+
+<body class="main-body">
+    <nav class="main-nav">
+        <div class="nav-wrapper red darken-2">
+            <a href="index.html" class="brand-logo">OPEN: ArtScene / Denver</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="places.html">PLACES</a></li>
+                <li><a href="events.html" class="waves-effect waves-light btn blue darken-1">SEE ALL EVENTS</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="places.html">PLACES</a></li>
+                <li><a href="events.html" class="waves-effect waves-light btn blue darken-1">SEE ALL EVENTS</a></li>
+            </ul>
+        </div>
+    </nav>
+    <img src="images/redlinetest.jpg" class="bg-img" alt="">
+    <section class="main-left">
+        <h1 class="date"><time datetime="MM/DD/YYYYY"></h1>
+        <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="main-right">
+        <div class="container map-container">
+            <div id="map"></div>
+        </div>
+
+    </section>
+
+    <footer class="page-footer footy blue darken-1">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+
+
+
+
+    <script src="scripts/mapinit.js"></script>
+    <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyB9eU1NQ3c6M_yPUTvuR1yBeKjeT9wPvmU&callback=initMap"></script>
+    <script src="scripts/app.js"></script>
+</body>
 </html>
+
+
+
+<!--
+
+split background
+
+header
+
+    logo
+
+    title (font?)
+
+    nav
+
+left side
+
+    date (current if events, or next if none)
+
+        way to view more dates here? (calendar?)
+
+    materialize 'collapsible' table of events
+
+-->

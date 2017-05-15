@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <title>OPEN : ArtScene / Denver</title>
+</head>
+
+<body>
+
+
+    <div class="description">
+        <h3>OPEN: The Front Page of the Denver ArtScene</h3>
+        <p>Please continue with Facebook for access to all event listings</p>
+    </div>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <!-- Element Showed -->
+    <a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">menu</i></a>
+
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content">
+            <h5>Title</h5>
+            <p>A bunch of text</p>
+        </div>
+    </div>
+
+
+<script src="scripts/app.js"></script>
+</body>
+
+</html>
+
+
+<!--
+slick background
+
+brief descriptor P
+
+'continue with facebook' button
+
+if login successful:
+
+    a) primary colors preloader
+
+    b) redirect to home
+ -->

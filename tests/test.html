@@ -14,52 +14,19 @@
 
 <body>
 <nav class="container">
-        <h1 class="title ">OPEN</h1>
+        <h1 class="title ">test</h1>
     </nav>
 
 
 
 
     <br>
-    <div id="map"></div>
-    <script>
-        function initMap() {
-            var uluru = {
-                lat: -25.363,
-                lng: 131.044
-            };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
+
 
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button>
 
-    <section class="main">
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-        </div>
-    </section>
-
-    <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyCzn87EZTOCxMbvqqozbGHTTfSNIEFGJMc&callback=initMap">
-    </script>
-    <script src="../scripts/fbInit.js"></script>
+    <script src="../scripts/fbinit.js"></script>
 
 </body>
 
