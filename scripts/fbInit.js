@@ -197,7 +197,7 @@ function fbReady() {
                               </div>
                               <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">${eventName} (${eachEvent.place.name })<i class="material-icons right">close</i></span>
-                                <p>${eventDayCal}<hr>${eachEvent.description}</p>
+                                <p>${eventDayCal}<br>${eachEvent.owner.name}<hr>${eachEvent.description}</p>
                               </div>
                             </div>
                             </li>`)
@@ -242,6 +242,7 @@ function fbReady() {
                     icon: mapIcon,
                     event: eachEvent.id
                 })
+                let mapMarker = eventMapMarker.event
 
   //               eventMapMarker.addListener('mouseover', function(event) {
   //                   let infoCard = $(`  <div class="col s12 m7">
@@ -265,12 +266,12 @@ function fbReady() {
                 // })
 
 
-                // eventMapMarker.addListener('click', function(){
-                //     console.log(eventMapMarker.event)
-                //     $('html, body').animate({
-                //         scrollTop: $('#'+eventMapMarker.event).offset().top
-                //     }, 2000);
-                // })
+                eventMapMarker.addListener('click', function(){
+                    console.log(eventMapMarker.event)
+                    $('html, body').animate({
+                        scrollTop: $(mapMarker).offset().top
+                    }, 2000);
+                })
 
                 console.log(eventMapMarker)
                 console.log(eventMapMarker.event)
@@ -278,7 +279,7 @@ function fbReady() {
 
                     console.log(eventMapMarker.event)
                     $('html, body').animate({
-                        scrollTop: $(`#${eventMapMarker.event}`).offset().top
+                        scrollTop: mapMarker.offset().top
                     }, 2000);
                     console.log(eventMapMarker.event)
                 })
