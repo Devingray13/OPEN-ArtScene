@@ -7,7 +7,7 @@
             lat: 39.7392,
             lng: -104.9903
         };
-
+        
         var myOptions = {
             zoom: 13,
             center: denver,

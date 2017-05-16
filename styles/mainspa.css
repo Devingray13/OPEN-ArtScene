@@ -7,6 +7,22 @@ img{
     width:100vw;
 }
 
+.gallery-img{
+    width: 96%;
+    margin: 2%;
+}
+
+.gallery-info{
+    line-height: 125%;
+    color:white;
+    text-align: center;
+    margin: 2%;
+}
+
+.upcoming-info{
+    color:white;
+}
+
 .splash{
     display: grid;
     grid-template-columns: 3fr 7fr;
@@ -52,7 +68,7 @@ img{
 }
 
 #today{
-    color:skyblue;
+    color:royalblue;
 }
 #about{
     color:white;

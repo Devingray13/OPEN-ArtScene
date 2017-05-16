@@ -104,7 +104,7 @@ function fbReady() {
             // console.log(page, id)
             const promise1 = new Promise(function(resolve, reject) {
                 FB.api(
-                    "/" + id + "?fields=id,about,cover,description,location,mission,name",
+                    "/" + id + "?fields=id,about,cover,description,location,mission,name,website",
                     function(response) {
                         resolve(response)
                     }
@@ -128,10 +128,10 @@ function fbReady() {
             console.log(galleryWithEvents)
             filterCurrentEvents(galleryWithEvents)
         })
-let galleryObj
-let eventLocation = {}
-let eventMapMarker
-let eventName
+        let galleryObj
+        let eventLocation = {}
+        let eventMapMarker
+        let eventName
 
         function filterCurrentEvents(galleryWithEvents) {
 
@@ -148,8 +148,7 @@ let eventName
                     <div class="collapsible-body">
                         <ul id="${gallery}" class="collapsible popout" data-collapsible="accordion">
                         <li>
-                            <div class="collapsible-header">${galleryObj.about}</div>
-                            // <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            <div class="gallery-info"><img class="gallery-img" src="${galleryObj.cover.source}"><br> ${galleryObj.about}<hr>${galleryObj.location.street}<hr><a href="${galleryObj.website}">website</a></div><br>
                         </li>
                         </ul>
                     </div>
@@ -168,53 +167,120 @@ let eventName
                     eventName = eachEvent.name
                     eventDate = moment(eachEvent.start_time)
                     let eventDay0 = moment(eachEvent.start_time)
+                    let eventDayCal = eventDate.format('LLL')
 
 
-                    eventDay0.set({hour:0,minute:0,second:0,millisecond:0})
+                    eventDay0.set({
+                        hour: 0,
+                        minute: 0,
+                        second: 0,
+                        millisecond: 0
+                    })
                     if (eventDay0.isSame(moment(today))) {
                         console.log(eventDate)
                         console.log(eachEvent)
                         console.log(eventName)
                         console.log($(`#${gallery}`))
-                        $(`#${gallery}`).append(`<li>
-                            <div class="collapsible-header">${eventName}</div>
-                            // <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                            </li>`)
+
+                        // $('.daily-events').append(`<li>
+                        //     <div class="collapsible-header" id="${eachEvent.id}">${eventName} (${eachEvent.place.name })</div>
+                        //     <div class="collapsible-body"><span>${eventDate}<hr>${eachEvent.description}</span></div>
+                        //     </li>`)
+
                         $('.daily-events').append(`<li>
-                            <div class="collapsible-header">${eventName} (${eachEvent.place.name })</div>
-                            <div class="collapsible-body"><span>${eventDate}<hr>${eachEvent.description}</span></div>
+                            <div id="${eachEvent.id}" class="card">
+                              <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="${eachEvent.cover.source}">
+                              </div>
+                              <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">${eventName}<i class="material-icons right">more_vert</i></span>
+                              </div>
+                              <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">${eventName} (${eachEvent.place.name })<i class="material-icons right">close</i></span>
+                                <p>${eventDayCal}<hr>${eachEvent.description}</p>
+                              </div>
+                            </div>
                             </li>`)
+
                         mapIcon = 'images/yellow_MarkerT.png'
 
 
-                    } else if(eventDay0.isAfter(moment(today))){
-                        $('.upcoming-events').prepend(`<li>
-                            <div class="collapsible-header">${eventName
-                            }  ${eventDate} - ${eachEvent.place.name }</div>
-                            <div class="collapsible-body"><span>${eventDate}<hr>${eachEvent.description}</span></div>
-                            </li>`)
+                    } else if (eventDay0.isAfter(moment(today))) {
+
+                        let upcomingElement = `<li>
+                            <div class="collapsible-header" id="${eachEvent.id}">${eventName
+                            }  ${eventDayCal} - ${eachEvent.place.name }</div>
+                            <div class="collapsible-body upcoming-info" ><span class="upcoming-info">${eventDayCal}<hr>${eachEvent.description}</span></div>
+                            </li>`
+
+                        $('.upcoming-events').append(upcomingElement)
                         mapIcon = 'images/blue_MarkerU.png'
                     }
-                    if(eventDay0.isSame(moment(today)) || eventDay0.isAfter(moment(today))){
+                    if (eventDay0.isSame(moment(today)) || eventDay0.isAfter(moment(today))) {
                         getEventLocation()
                         mapEvents()
                     }
                 })
             }
 
-            function getEventLocation(){
-                if(eachEvent.place.location !== undefined){
+            function getEventLocation() {
+                if (eachEvent.place.location !== undefined) {
 
-                    eventLocation={'lat': eachEvent.place.location.latitude, 'lng': eachEvent.place.location.longitude}
+                    eventLocation = {
+                        'lat': eachEvent.place.location.latitude,
+                        'lng': eachEvent.place.location.longitude
+                    }
                     console.log('location: ', eventName, eventLocation)
                 }
 
             }
-            function mapEvents(){
+
+            function mapEvents() {
                 eventMapMarker = new google.maps.Marker({
                     position: eventLocation,
                     map: map,
-                    icon: mapIcon
+                    icon: mapIcon,
+                    event: eachEvent.id
+                })
+
+  //               eventMapMarker.addListener('mouseover', function(event) {
+  //                   let infoCard = $(`  <div class="col s12 m7">
+  //   <h2 class="header">Horizontal Card</h2>
+  //   <div class="card horizontal">
+  //     <div class="card-image">
+  //       <img src="http://lorempixel.com/100/190/nature/6">
+  //     </div>
+  //     <div class="card-stacked">
+  //       <div class="card-content">
+  //         <p>I am a very simple card. I am good at containing small bits of information.</p>
+  //       </div>
+  //       <div class="card-action">
+  //         <a href="#">This is a link</a>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
+  //           `)
+                //     $(event.target)
+                // })
+
+
+                // eventMapMarker.addListener('click', function(){
+                //     console.log(eventMapMarker.event)
+                //     $('html, body').animate({
+                //         scrollTop: $('#'+eventMapMarker.event).offset().top
+                //     }, 2000);
+                // })
+
+                console.log(eventMapMarker)
+                console.log(eventMapMarker.event)
+                $(eventMapMarker).click(function() {
+
+                    console.log(eventMapMarker.event)
+                    $('html, body').animate({
+                        scrollTop: $(`#${eventMapMarker.event}`).offset().top
+                    }, 2000);
+                    console.log(eventMapMarker.event)
                 })
             }
 
