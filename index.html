@@ -17,7 +17,7 @@
 
 <body class="main-body">
     <nav class="main-nav">
-        <div class="nav-wrapper red darken-2">
+        <div class="nav-wrapper black ">
             <a href="index.html" class="brand-logo">OPEN: ArtScene / Denver</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -32,8 +32,10 @@
             </ul>
         </div>
     </nav>
-    <img src="images/redlinetest.jpg" class="bg-img" alt="">
-    <section class="main-left">
+
+    <!-- <img src="images/redlinetest.jpg" class="bg-img" alt=""> -->
+
+    <!-- <section class="main-left">
         <h1 class="date"><time datetime="MM/DD/YYYYY"></h1>
         <ul class="collapsible popout" data-collapsible="accordion">
             <li>
@@ -53,44 +55,118 @@
 
     <section class="main-right">
         <div class="container map-container">
-            <div id="map"></div>
+            <div id="map">
+
+            </div>
         </div>
+
+    </section> -->
+    <div id="map"></div>
+
+    <section class="page places-events">
+        <div id="map"></div>
+
+        <div class="parallax-container map-container">
+            <div id="map" ></div>
+        </div>
+        <div class="section black">
+            <div class="row container">
+                <h2 class="header">NEXT</h2>
+                <p class="grey-text text-darken-3 lighten-3">the soonest events</p>
+            </div>
+        </div>
+        <div class="parallax-container galleries-list">
+            <ul class="collapsible popout daily-events" data-collapsible="accordion"></ul>
+        </div>
+    </section>
+    <section class="page places-events">
+        <div class="section black">
+            <div class="row container">
+                <h2 class="header">WHERE</h2>
+                <p class="grey-text text-darken-3 lighten-3">Denver's Top 20 art organizations <br> click for info and events </p>
+            </div>
+        </div>
+        <div class="parallax-container where">
+            <!-- <div id="places-events-start" class="block white">
+                <nav class="pushpin-demo-nav pinned" data-target="white" >
+                    <div class="nav-wrapper black">
+                        <div class="container">
+                            <a href="#">EVENTS</a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a href="#!">1</a></li>
+                                <li><a href="#!">2</a></li>
+                                <li><a href="#!">3</a></li>
+                            </ul>
+                        </div>
+                        <ul class="collapsible places-events-list" data-collapsible="accordion"></ul>
+                    </div>
+                </nav>
+            </div </div> -->
+            <div class="section black">
+                <div class="row container">
+                    <h2 class="header">TODAY</h2>
+                    <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+                </div>
+            </div>
+            <div class="parallax-container">
+                <div class="parallax"><img src="images/redlinetest.jpg"></div>
+            </div>
 
     </section>
-
-    <footer class="page-footer footy blue darken-1">
+    <footer class="page-footer">
         <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
         <div class="footer-copyright">
-          <div class="container">
-          © 2014 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-          </div>
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
         </div>
-      </footer>
+    </footer>
+
+
+    <!-- <div id="places-events-start" class="block white">
+        <nav class="pushpin-demo-nav pinned" data-target="white" style="bottom:0px;">
+            <div class="nav-wrapper black">
+                <div class="container">
+                    <a href="#">EVENTS</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#!">1</a></li>
+                        <li><a href="#!">2</a></li>
+                        <li><a href="#!">3</a></li>
+                    </ul>
+                </div>
+                <ul class="collapsible places-events-list" data-collapsible="accordion"></ul>
+            </div>
+        </nav>
+    </div> -->
 
 
 
 
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <script src="scripts/fbInit.js"></script>
     <script src="scripts/mapinit.js"></script>
     <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyB9eU1NQ3c6M_yPUTvuR1yBeKjeT9wPvmU&callback=initMap"></script>
     <script src="scripts/app.js"></script>
 </body>
+
 </html>
 
 

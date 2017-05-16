@@ -1,0 +1,72 @@
+*{
+    /*border: 1px dotted pink;*/
+    color: red;
+}
+
+img{
+    width:100vw;
+}
+
+.splash{
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height:75vh;
+    background-image: url('/images/gallery9blownout.jpg');
+    background-size:100vw;
+    background-repeat: no-repeat;
+
+
+    /*put media query for less than 1050 wide to just have map take up whole thing*/
+
+}
+
+.section-nav ul{
+
+    list-style-type: none;
+}
+
+.section-nav > li{
+    display:inline;
+    margin: 2em;
+    float: right;
+}
+
+
+.today-nav  a{
+    color:red;
+}
+
+.upcoming-nav a {
+    color:yellow;
+}
+
+
+#map {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    height:100%;
+    width: 100%;
+    z-index: 2;
+
+}
+
+#today{
+    color:skyblue;
+}
+#about{
+    color:white;
+}
+
+#places{
+    color:yellow;
+}
+
+#upcoming{
+    color:red;
+}
+
+#home{
+    color:white;
+    letter-spacing: 2em;
+}
