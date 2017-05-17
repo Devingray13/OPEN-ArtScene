@@ -3,17 +3,18 @@
     color: red;
 }
 
-actualSite{
-    /*display: none;*/
+#actual-site{
+    display: none;
 }
 
-.login-splash{
+#login-splash{
     background-image: url('/images/gallery1bright.jpg');
     background-size:110%;
     /*background-repeat:no-repeat;*/
     height:100vh;
-
 }
+
+
 
 img{
     width:100vw;

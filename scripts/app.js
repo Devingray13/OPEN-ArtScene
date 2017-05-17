@@ -1,4 +1,4 @@
-$(appReady)
+
 
 function appReady() {
     let today = new Date()
@@ -26,6 +26,6 @@ function appReady() {
     })
      $('.parallax').parallax();
 
-     
+
 
 }

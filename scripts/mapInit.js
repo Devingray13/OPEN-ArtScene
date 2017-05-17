@@ -9,7 +9,7 @@
         };
 
         var myOptions = {
-            zoom: 12,
+            zoom: 13,
             center: denver,
             styles: styleJSON,
             disableDefaultUI: true,

@@ -3,7 +3,7 @@ $(fbReady)
 function fbReady() {
 
     var actual$ite = $('#actualSite').html()
-    var login$plash = $('#login').html()
+    var login$plash = $('.login-splash').html()
 
     let loginAccessToken;
 
@@ -36,8 +36,10 @@ function fbReady() {
             if (response.status === 'connected') {
                 loginAccessToken = response.authResponse.accessToken
                 console.log('success')
-
-                $('render').html(actual$ite)
+                $('#login-splash').hide()
+                $('#actual-site').show()
+                
+                appReady()
                 initMap()
                 retrieveData()
                 $('#logOut').click(function(){
@@ -53,6 +55,8 @@ function fbReady() {
                 // document.getElementById('status').innerHTML = 'Please log ' +
                 //     'into this app.';
                 $('render').html(login$plash)
+                $('#login-splash').show()
+                $('#actual-site').hide()
 
             }
         }
@@ -238,7 +242,7 @@ function fbReady() {
                             </div>
                             </li>`)
 
-                        if ($('.daily-li').size() > 1) {
+                        if ($('.daily-li').size() > 0) {
                             $('#no-events').hide()
                         }
 
@@ -248,8 +252,7 @@ function fbReady() {
 
                     } else if (eventDay0.isAfter(today)) {
                         upcomingElement = `<li>
-                            <div class="collapsible-header" id="${eachEvent.id}">${eventName
-                            }  ${eventDayCal} - ${eachEvent.place.name }</div>
+                            <div class="collapsible-header" id="${eachEvent.id}">${eventDayCal} -  ${eventName} @ ${eachEvent.place.name }</div>
                             <div class="collapsible-body upcoming-info" ><span class="upcoming-info">${eventDayCal}<hr>${eachEvent.description}</span></div>
                             </li>`
 
