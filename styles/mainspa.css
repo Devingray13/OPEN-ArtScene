@@ -37,6 +37,12 @@ img{
 
 }
 
+.outofboundsalert{
+    font-style: italic;
+    text-align:center;
+    color:royalblue;
+}
+
 .section-nav ul{
 
     list-style-type: none;
