@@ -26,4 +26,6 @@ function appReady() {
     })
      $('.parallax').parallax();
 
+     
+
 }

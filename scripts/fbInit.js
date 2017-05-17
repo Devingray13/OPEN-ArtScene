@@ -6,7 +6,9 @@ function fbReady() {
 
     let today = new Date()
     today.setHours(0, 0, 0, 0)
+    today = moment(today)
     console.log(today)
+
 
 
 
@@ -95,7 +97,6 @@ function fbReady() {
     let eventArray
     let gallery
     let eventDate
-    let eachEvent
     let mapIcon
     let galleryObj
     let eventLocation = {}
@@ -106,7 +107,7 @@ function fbReady() {
     let eventDayCal
     let dateSortEvents = []
     let markerArray = [];
-    let mapMarker
+    let eventGalleryIDRelation
 
 
     function retrieveData() {
@@ -155,6 +156,8 @@ function fbReady() {
                 }
                 gallery = galleryWithEvents[eachGallery][0].name
                 galleryObj = galleryWithEvents[eachGallery][0]
+
+
                 // console.log(gallery)
                 // console.log(galleryObj)
                 // console.log(eventArray)
@@ -170,7 +173,7 @@ function fbReady() {
                 </li>`)
                 if (eventArray.length > 0) {
                     appendEvents()
-                    mapEvents()
+                    // mapEvents()
                 }
             })
 
@@ -179,31 +182,28 @@ function fbReady() {
                 $.each(eventArray, function(event) {
                     // console.log(eventArray[event])
 
-                    eachEvent = eventArray[event]
+                    let eachEvent = eventArray[event]
                     eventName = eachEvent.name
                     eventDate = moment(eachEvent.start_time)
                     eventDay0 = moment(eachEvent.start_time)
                     eventDayCal = eventDate.format('LLL')
-
-
                     eventDay0.set({
                         hour: 0,
                         minute: 0,
                         second: 0,
                         millisecond: 0
                     })
-                    if (eventDay0.isSame(moment(today))) {
+
+                    eventArray[event].eventGalleryLocation = galleryObj.location
+
+
+                    if (eventDay0.isSame(today)) {
                         // console.log(eventDate)
                         // console.log(eachEvent)
                         // console.log(eventName)
                         // console.log($(`#${gallery}`))
 
-                        // $('.daily-events').append(`<li>
-                        //     <div class="collapsible-header" id="${eachEvent.id}">${eventName} (${eachEvent.place.name })</div>
-                        //     <div class="collapsible-body"><span>${eventDate}<hr>${eachEvent.description}</span></div>
-                        //     </li>`)
-
-                        $('.daily-events').append(`<li>
+                        $('.daily-events').append(`<li class="daily-li">
                             <div id="${eachEvent.id}" class="card">
                               <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="${eachEvent.cover.source}">
@@ -218,10 +218,15 @@ function fbReady() {
                             </div>
                             </li>`)
 
+                        if ($('.daily-li').size() > 1) {
+                            $('#no-events').hide()
+                        }
+
                         mapIcon = 'images/yellow_MarkerT.png'
+                        doDaMapThang(eachEvent)
 
 
-                    } else if (eventDay0.isAfter(moment(today))) {
+                    } else if (eventDay0.isAfter(today)) {
                         upcomingElement = `<li>
                             <div class="collapsible-header" id="${eachEvent.id}">${eventName
                             }  ${eventDayCal} - ${eachEvent.place.name }</div>
@@ -230,86 +235,88 @@ function fbReady() {
 
                         $('.upcoming-events').append(upcomingElement)
                         mapIcon = 'images/blue_MarkerU.png'
-
-
-                    }
-                    if (eventDay0.isSame(moment(today)) || eventDay0.isAfter(moment(today))) {
-                        getEventLocation()
-                        mapEvents()
+                        doDaMapThang(eachEvent)
 
                     }
+
                 })
             }
 
-            function getEventLocation() {
-                if (eachEvent.place.location !== undefined) {
+            function doDaMapThang(eachEvent) {
+                // console.log(eachEvent)
+                mapEvents(eachEvent)
+            }
 
-                    eventLocation = {
+            function getEventLocation(eachEvent) {
+                if (eachEvent.place.hasOwnProperty('location')) {
+                    return {
                         'lat': eachEvent.place.location.latitude,
                         'lng': eachEvent.place.location.longitude
                     }
                     // console.log('location: ', eventName, eventLocation)
+                } else {
+                    return {
+                        'lat': eachEvent.eventGalleryLocation.latitude,
+                        'lng': eachEvent.eventGalleryLocation.longitude
+                    }
                 }
 
             }
 
-            function mapEvents() {
-
+            function mapEvents(eachEvent) {
+                let eventLocation = getEventLocation(eachEvent)
                 console.log(eachEvent.name)
                 console.log(eachEvent)
-                mapMarker = new google.maps.Marker({
+                var mapMarker = new google.maps.Marker({
                     position: eventLocation,
                     map: map,
                     icon: mapIcon,
-                    event: eachEvent.name
+                    name: eachEvent.name,
+                    id: eachEvent.id,
+                    image: eachEvent.cover.source,
+                    zIndex: 2
                 })
-                // let infowindow = new google.maps.InfoWindow({
-                //     content: 'hi'
-                // });
+                // markerArray.push(mapMarker)
 
-                // mapMarker.addListener('click', function() {
-                //     infowindow.open(map, mapMarker);
-                // });
-                markerArray.push(mapMarker)
+                let linkVar = `<a href="#${mapMarker.id}"><img src="${mapMarker.image}" class="info-window-img"><br>${mapMarker.name}</a>`
 
-
-
-
-
-                //     let mapMarker = eventMapMarker.event
-                //
-                //
-                // eachEvent.id.addListener('click', function() {
-                //     console.log(eachEvent.id.event)
-                //     // $('html, body').animate({
-                //     //     scrollTop: $(mapMarker).offset().top
-                //     // }, 2000);
-                // })
-                //
-                //     console.log(eventMapMarker)
-                //     console.log(eventMapMarker.event)
-                //     $(eventMapMarker).click(function() {
-                //
-                //         console.log(eventMapMarker.event)
-                //         $('html, body').animate({
-                //             scrollTop: mapMarker.offset().top
-                //         }, 2000);
-                //         console.log(eventMapMarker.event)
-                //     })
-            }
-            console.log(markerArray)
-            $.each(markerArray, function(i) {
-                console.log(markerArray[i])
-                // $('markerArray' [i]).click(function() {
-                //     console.log(markerArray[i].event)
-                // })
                 let infowindow = new google.maps.InfoWindow({
-                    content: 'hi'
+                    content: linkVar
                 });
-                markerArray[i].addListener('click', function() {
-                    infowindow.open(map, markerArray[i]);
-                });
-            })
+                mapMarker.addListener('click', function() {
+                    infowindow.open(map, mapMarker);
+                })
+                map.addListener('click', function() {
+                    infowindow.close(map, mapMarker);
+                })
+
+                map.addListener('mouseout', function() {
+                    infowindow.close(map, mapMarker);
+                })
+
+                if (mapMarker.icon === 'images/yellow_MarkerT.png'){
+                    mapMarker.zIndex = 3
+                }
+            }
+            // console.log(markerArray)
+            // $.each(markerArray, function(i) {
+            //     console.log(markerArray[i])
+            //
+            // let linkVar = `<a href="#${markerArray[i].id}"><img src="${markerArray[i].image}" class="info-window-img"><br>${markerArray[i].name}</a>`
+            //
+            // let infowindow = new google.maps.InfoWindow({
+            //     content: linkVar
+            // });
+            // markerArray[i].addListener('click', function() {
+            //     infowindow.open(map, markerArray[i]);
+            // })
+            // map.addListener('click', function() {
+            //     infowindow.close(map, markerArray[i]);
+            // })
+            // map.addListener('mouseout', function() {
+            //     infowindow.close(map, markerArray[i]);
+            // })
+            // })
 
         }
 

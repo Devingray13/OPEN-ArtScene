@@ -41,6 +41,7 @@
 
     <div class="section yellow">
         <div class="row container ">
+
             <ul class="section-nav today-nav">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#places">PLACES</a></li>
@@ -49,12 +50,15 @@
             </ul>
             <h2 id="today" class="header">TODAY</h2></h2>
             <!-- <ul class="collapsible popout daily-events" data-collapsible="accordion"></ul> -->
+
             <br>
+            <h3 id="no-events"><br>nothing happening today <br><br>
+            </h3>
             <ul class="daily-events"</ul>
         </div>
         <div class="outofboundsalert">
-            note: events outside Denver core will not appear on map<br>
-        </div>
+            note: events outside local Denver will not appear on map<br>
+        </div><br>
     </div>
 
     <div class="parallax-container">
@@ -70,7 +74,7 @@
             </ul>
             <h2 id="places" class="header">PLACES</h2></h2>
             <ul class="collapsible events-list" data-collapsible="accordion"></ul>
-        </div>
+        </div><br>
     </div>
     <div class="parallax-container">
         <div class="parallax"><img src="images/gallery4.jpg"></div>
@@ -85,7 +89,7 @@
             </ul>
             <h2 id="upcoming" class="header">UPCOMING</h2></h2>
             <ul class="collapsible popout upcoming-events" data-collapsible="accordion"></ul>
-        </div>
+        </div><br>
     </div>
 
     <footer class="page-footer black">
@@ -121,27 +125,3 @@
 </body>
 
 </html>
-
-
-
-<!--
-
-split background
-
-header
-
-    logo
-
-    title (font?)
-
-    nav
-
-left side
-
-    date (current if events, or next if none)
-
-        way to view more dates here? (calendar?)
-
-    materialize 'collapsible' table of events
-
--->
