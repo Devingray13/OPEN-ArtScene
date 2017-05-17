@@ -2,6 +2,9 @@ $(fbReady)
 
 function fbReady() {
 
+    var actual$ite = $('#actualSite').html()
+    var login$plash = $('#login').html()
+
     let loginAccessToken;
 
     let today = new Date()
@@ -23,17 +26,34 @@ function fbReady() {
 
         $('#loginbutton,#feedbutton').removeAttr('disabled');
 
+
+
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
 
-            loginAccessToken = response.authResponse.accessToken
+
             if (response.status === 'connected') {
+                loginAccessToken = response.authResponse.accessToken
                 console.log('success')
-                retrieveData();
+
+                $('render').html(actual$ite)
+                initMap()
+                retrieveData()
+                $('#logOut').click(function(){
+                    console.log('ya did it')
+                    FB.logout(function(response) {
+                        console.log('ya did it')
+                        // $('render').html(login$plash)
+
+                    })
+                })
+
             } else {
-                document.getElementById('status').innerHTML = 'Please log ' +
-                    'into this app.';
+                // document.getElementById('status').innerHTML = 'Please log ' +
+                //     'into this app.';
+                $('render').html(login$plash)
+
             }
         }
 
@@ -274,7 +294,7 @@ function fbReady() {
                     name: eachEvent.name,
                     id: eachEvent.id,
                     image: eachEvent.cover.source,
-                    zIndex: 2
+                    zIndex: 3
                 })
                 // markerArray.push(mapMarker)
 
@@ -295,7 +315,11 @@ function fbReady() {
                 })
 
                 if (mapMarker.icon === 'images/yellow_MarkerT.png'){
-                    mapMarker.zIndex = 3
+                    mapMarker.zIndex = 4
+                }
+
+                if (mapMarker.icon === 'images/red_MarkerP.png'){
+                    mapMarker.zIndex = 2
                 }
             }
             // console.log(markerArray)

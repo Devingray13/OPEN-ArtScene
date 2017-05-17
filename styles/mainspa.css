@@ -3,6 +3,18 @@
     color: red;
 }
 
+actualSite{
+    /*display: none;*/
+}
+
+.login-splash{
+    background-image: url('/images/gallery1bright.jpg');
+    background-size:110%;
+    /*background-repeat:no-repeat;*/
+    height:100vh;
+
+}
+
 img{
     width:100vw;
 }
@@ -51,16 +63,20 @@ img{
 }
 
 .section-nav ul{
-
+    display:flex;
     list-style-type: none;
+    float: right;
 }
 
 .section-nav > li{
     display:inline;
     margin: 2em;
-    float: right;
 }
 
+.each-header-section-nav{
+    display:flex;
+    justify-content: space-between;
+}
 
 .today-nav  a{
     color:red;
@@ -78,6 +94,9 @@ img{
     width: 100%;
     z-index: 2;
 
+}
+.header{
+    display:flex;
 }
 
 #today{
