@@ -184,19 +184,15 @@ function fbReady() {
                 // console.log(galleryObj)
                 // console.log(eventArray)
                 $('.events-list').append(`<li>
-                    <div class="collapsible-header"> ${gallery} </div>
+                    <div class="collapsible-header" > ${gallery} </div>
                     <div class="collapsible-body">
                         <ul id="${gallery}" class="collapsible popout" data-collapsible="accordion">
-                        <li>
-                            <div class="gallery-info"><img class="gallery-img" src="${galleryObj.cover.source}"><br> ${galleryObj.about}<hr>${galleryObj.location.street}<hr><a href="${galleryObj.website}">website</a></div><br>
+                        <li class="upcoming-info-body">
+                            <div class="gallery-info "><img class="gallery-img" src="${galleryObj.cover.source}"><br> ${galleryObj.about}<hr><span style="color:#2196f3;">${galleryObj.location.street}<span><hr><a href="${galleryObj.website}" style="color:yellow;">website</a></div><br>
                         </li>
                         </ul>
                     </div>
                 </li>`)
-                if (eventArray.length > 0) {
-
-                    // mapEvents()
-                }
             })
 
             appendEvents()
@@ -260,8 +256,9 @@ function fbReady() {
 
                     } else if (eventDay0.isAfter(today)) {
                         upcomingElement = `<li>
-                            <div class="collapsible-header" id="${eachEvent.id}">${eventDayCal} -  ${eventName} @ ${eachEvent.place.name }</div>
-                            <div class="collapsible-body upcoming-info" ><span class="upcoming-info">${eventDayCal}<hr>${eachEvent.description}</span></div>
+                            <div class="collapsible-header upcoming-datetime" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
+                            <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info">${eachEvent.description}<br>
+                            <hr><img class="activator gallery-img" src="${eachEvent.cover.source}"></span></div>
                             </li>`
 
                         $('.upcoming-events').append(upcomingElement)
