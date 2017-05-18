@@ -2,7 +2,12 @@
 
 
 // $(window).load(loadBody())
-function loadBody() {$('body').addClass('loaded')}
+function loadBody() {
+    setTimeout(function(){
+        $('body').addClass('loaded')
+    }, 1700 )
+}
+
 function appReady() {
     let today = new Date()
     let date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()

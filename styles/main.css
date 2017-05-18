@@ -1,22 +1,86 @@
+@media (max-width: 1200px){
+    .main-nav{
+        flex-direction: column;
+    }
+    .header{
+        width:100vw;
+    }
+    .main-nav-buttons{
+
+        width: 100vw;
+    }
+}
+
+
 * {
     /*border: 1px dotted pink;*/
     color: red;
 }
 
+#login-splash{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 100vh;
+}
+
+.splash-bg{
+    position: absolute;
+    object-fit:cover;
+    z-index: -1;
+    grid-column: 1/7;
+}
+
+.fb-login-button{
+    display: block;
+    z-index:5;
+    grid-column:5/6;
+    grid-row: 4/5;
+}
+
+h2{
+    font-size: 400%;
+    line-height: 100%;
+    margin:.5em;
+}
+
 #actual-site {
     display: none;
 }
+#main-container {
+    display: flex;
+    flex-direction: column;
+}
 
-#login-splash {
+.main-nav{
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-nav-buttons{
+    flex-direction: row;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.main-nav-buttons > li{
+    margin: 1em;
+    flex-grow: 1;
+}
+
+/*#login-splash {
     background-image: url('/images/gallery1bright.jpg');
     background-size: 110%;
     /*background-repeat:no-repeat;*/
-    height: 100vh;
-    /*display: none;*/
-}
+
+    /*display: none;
+}*/
 
 img {
-    max-width: 100vw;
+    width: 100vw;
 }
 
 .map-section {
@@ -98,6 +162,7 @@ li {
 #home {
     color: white;
     letter-spacing: 2em;
+    margin-left:1em;
 }
 
 .gallery-img {
@@ -126,6 +191,26 @@ li {
     text-align: center;
     color: white;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #loader-wrapper {
     position: fixed;

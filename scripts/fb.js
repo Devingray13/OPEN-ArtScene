@@ -1,4 +1,7 @@
 $(fbReady)
+
+
+
 function fbReady() {
     $.ajaxSetup({
         cache: true
@@ -8,82 +11,65 @@ function fbReady() {
             appId: '1931532333798494',
             version: 'v2.7',
             cookie: true,
-            xfbml: true
+            xfbml: true,
+            oauth:true
         })
 
-        // FB.Event.subscribe('auth.login', function() {
-        //     $('#login-splash').hide()
-        //     $('#actual-site').show()
-        //     setTimeout(function() {
-        //         location.reload(true)
-        //     }, 500)
-        // })
-        //
-        // FB.Event.subscribe('auth.logout', function() {
-        //     $('#login-splash').show()
-        //     $('#actual-site').hide()
-        //     setTimeout(function() {
-        //         location.reload(true)
-        //     }, 500)
-        // })
 
-        FB.Event.subscribe('auth.statusChange', function() {
-            $('#login-splash').toggle()
-            $('#actual-site').toggle()
-
-        })
+        // FB.Event.subscribe('auth.statusChange', statusChangeCallback)
 
         $('#loginbutton,#feedbutton').removeAttr('disabled');
+
+
+
 
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
-
             $('.fb-login-button').click(function(response) {
                 console.log(response)
-
             })
 
             if (response.status === 'connected') {
                 let loginAccessToken = response.authResponse.accessToken
                 console.log('success')
-                // $('#login-splash').hide()
-                // $('#actual-site').show()
+                $('#login-splash').hide()
+                $('#actual-site').show()
                 appReady()
                 initMap()
                 retrieveData()
                 $('body').removeClass('loaded')
                 $(window).load(loadBody())
             } else {
-                // $('#login-splash').show()
-                // $('#actual-site').hide()
+                $('#login-splash').show()
+                $('#actual-site').hide()
                 $('body').addClass('loaded')
             }
-
-            $('#logOut').click(function() {
-                console.log('ya did it')
-                // $('#login-splash').show()
-                // $('#actual-site').hide()
-
-                FB.logout(function(response) {
-                    console.log('ya did it')
-                })
-            })
         }
 
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-                console.log(response)
-            })
-        }
+        $('#login-button').click(function() {
+            console.log('okay')
+            FB.login(statusChangeCallback, {
+                scope: 'email,public_profile'
+            });
+
+        } )
+
+        $('#logout-button').click(function() {
+            console.log('okay')
+            FB.logout(statusChangeCallback)
+
+        } )
+
 
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '1931532333798494',
                 cookie: true,
                 xfbml: true,
-                version: 'v2.8'
+                version: 'v2.8',
+                xfbml: true,
+                oauth: true
             })
 
             FB.getLoginStatus(function(response) {
@@ -129,7 +115,7 @@ function fbReady() {
     let eventObjects = {}
     let count = 0
     let allPages = []
-    let eventArray
+    let eventArray = []
     let gallery
     let eventDate
     let mapIcon
@@ -178,7 +164,7 @@ function fbReady() {
         })
 
         Promise.all(allPages).then(function(galleryWithEvents) {
-            console.log(galleryWithEvents)
+            // console.log(galleryWithEvents)
             filterCurrentEvents(galleryWithEvents)
         })
 
@@ -187,14 +173,9 @@ function fbReady() {
 
 
             $.each(galleryWithEvents, function(eachGallery) {
-                eventArray = galleryWithEvents[eachGallery][1]
-                eventArray.sort(function(a, b) {
-                    return rawNumbers(a.start_time) - rawNumbers(b.start_time)
-                })
+                eventArray = eventArray.concat(galleryWithEvents[eachGallery][1])
+                console.log(galleryWithEvents[eachGallery][1])
 
-                function rawNumbers(x) {
-                    return x.replace(/[^0-9]/g, '')
-                }
                 gallery = galleryWithEvents[eachGallery][0].name
                 galleryObj = galleryWithEvents[eachGallery][0]
 
@@ -213,13 +194,23 @@ function fbReady() {
                     </div>
                 </li>`)
                 if (eventArray.length > 0) {
-                    appendEvents()
+
                     // mapEvents()
                 }
             })
 
-            function appendEvents() {
+            appendEvents()
 
+            function appendEvents() {
+                console.log(eventArray)
+                eventArray.sort(function(a, b) {
+                    return rawNumbers(a.start_time) - rawNumbers(b.start_time)
+                })
+                console.log(eventArray[0])
+
+                function rawNumbers(x) {
+                    return x.replace(/[^0-9]/g, '')
+                }
                 $.each(eventArray, function(event) {
                     // console.log(eventArray[event])
 
@@ -305,8 +296,8 @@ function fbReady() {
 
             function mapEvents(eachEvent) {
                 let eventLocation = getEventLocation(eachEvent)
-                console.log(eachEvent.name)
-                console.log(eachEvent)
+                // console.log(eachEvent.name)
+                // console.log(eachEvent)
                 var mapMarker = new google.maps.Marker({
                     position: eventLocation,
                     map: map,
@@ -316,6 +307,7 @@ function fbReady() {
                     image: eachEvent.cover.source,
                     zIndex: 3
                 })
+
                 // markerArray.push(mapMarker)
 
                 let linkVar = `<a href="#${mapMarker.id}"><img src="${mapMarker.image}" class="info-window-img"><br>${mapMarker.name}</a>`

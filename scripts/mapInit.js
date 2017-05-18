@@ -12,7 +12,8 @@ function initMap() {
         disableDefaultUI: true,
         gestureHandling: 'none',
         scrollwheel: false,
-        disableDoubleClickZoom: true
+        disableDoubleClickZoom: true,
+        backgroundColor: 'hsla(0, 0%, 0%, 0)'
     }
 
     map = new google.maps.Map(document.getElementById('map'), myOptions)
@@ -24,6 +25,8 @@ function initMap() {
     })
 }
 
+
+
 var styleJSON = [{
         "stylers": [{
             "color": "#f6fff9"
@@ -32,13 +35,14 @@ var styleJSON = [{
     {
         "elementType": "geometry.fill",
         "stylers": [{
-            "color": "#fafff8"
+            "visibility": "off"
+
         }]
     },
     {
         "elementType": "labels.text.fill",
         "stylers": [{
-            "color": "#002eff"
+            "color": "#d30000"
         }]
     },
     {
