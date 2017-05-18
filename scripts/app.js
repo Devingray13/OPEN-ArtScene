@@ -1,5 +1,8 @@
 
 
+
+// $(window).load(loadBody())
+function loadBody() {$('body').addClass('loaded')}
 function appReady() {
     let today = new Date()
     let date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()
@@ -25,7 +28,6 @@ function appReady() {
         offset: 0
     })
      $('.parallax').parallax();
-
-
-
 }
+
+$('body').load(function(){$('body').addClass('loaded')})

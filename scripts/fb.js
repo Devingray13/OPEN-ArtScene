@@ -1,72 +1,81 @@
 $(fbReady)
-
 function fbReady() {
-
-    var actual$ite = $('#actualSite').html()
-    var login$plash = $('.login-splash').html()
-
-    let loginAccessToken;
-
-    let today = new Date()
-    today.setHours(0, 0, 0, 0)
-    today = moment(today)
-    console.log(today)
-
-
-
-
     $.ajaxSetup({
         cache: true
     });
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function() {
         FB.init({
             appId: '1931532333798494',
-            version: 'v2.7'
-        });
+            version: 'v2.7',
+            cookie: true,
+            xfbml: true
+        })
+
+        // FB.Event.subscribe('auth.login', function() {
+        //     $('#login-splash').hide()
+        //     $('#actual-site').show()
+        //     setTimeout(function() {
+        //         location.reload(true)
+        //     }, 500)
+        // })
+        //
+        // FB.Event.subscribe('auth.logout', function() {
+        //     $('#login-splash').show()
+        //     $('#actual-site').hide()
+        //     setTimeout(function() {
+        //         location.reload(true)
+        //     }, 500)
+        // })
+
+        FB.Event.subscribe('auth.statusChange', function() {
+            $('#login-splash').toggle()
+            $('#actual-site').toggle()
+
+        })
 
         $('#loginbutton,#feedbutton').removeAttr('disabled');
-
-
 
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
 
+            $('.fb-login-button').click(function(response) {
+                console.log(response)
+
+            })
 
             if (response.status === 'connected') {
-                loginAccessToken = response.authResponse.accessToken
+                let loginAccessToken = response.authResponse.accessToken
                 console.log('success')
-                $('#login-splash').hide()
-                $('#actual-site').show()
-                
+                // $('#login-splash').hide()
+                // $('#actual-site').show()
                 appReady()
                 initMap()
                 retrieveData()
-                $('#logOut').click(function(){
-                    console.log('ya did it')
-                    FB.logout(function(response) {
-                        console.log('ya did it')
-                        // $('render').html(login$plash)
-
-                    })
-                })
-
+                $('body').removeClass('loaded')
+                $(window).load(loadBody())
             } else {
-                // document.getElementById('status').innerHTML = 'Please log ' +
-                //     'into this app.';
-                $('render').html(login$plash)
-                $('#login-splash').show()
-                $('#actual-site').hide()
-
+                // $('#login-splash').show()
+                // $('#actual-site').hide()
+                $('body').addClass('loaded')
             }
+
+            $('#logOut').click(function() {
+                console.log('ya did it')
+                // $('#login-splash').show()
+                // $('#actual-site').hide()
+
+                FB.logout(function(response) {
+                    console.log('ya did it')
+                })
+            })
         }
 
         function checkLoginState() {
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
                 console.log(response)
-            });
-            console.log(FB)
+            })
         }
 
         window.fbAsyncInit = function() {
@@ -75,22 +84,24 @@ function fbReady() {
                 cookie: true,
                 xfbml: true,
                 version: 'v2.8'
-            });
+            })
 
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
-            });
-        };
+            })
+        }
 
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1931532333798494";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     })
+
+
 
     let pageIds = {
         "Black Cube Nomadic Museum": "564675637004520",
@@ -132,6 +143,12 @@ function fbReady() {
     let dateSortEvents = []
     let markerArray = [];
     let eventGalleryIDRelation
+
+    let today = new Date()
+    today.setHours(0, 0, 0, 0)
+    today = moment(today)
+    console.log(today)
+
 
 
     function retrieveData() {
@@ -317,11 +334,11 @@ function fbReady() {
                     infowindow.close(map, mapMarker);
                 })
 
-                if (mapMarker.icon === 'images/yellow_MarkerT.png'){
+                if (mapMarker.icon === 'images/yellow_MarkerT.png') {
                     mapMarker.zIndex = 4
                 }
 
-                if (mapMarker.icon === 'images/red_MarkerP.png'){
+                if (mapMarker.icon === 'images/red_MarkerP.png') {
                     mapMarker.zIndex = 2
                 }
             }
