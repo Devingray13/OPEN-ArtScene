@@ -86,7 +86,7 @@
         grid-column: 2/3;
         justify-content: space-between;
     }
-    .main-nav-buttons li {
+    .main-nav-buttons li,a {
         justify-content: center;
     }
     #title {

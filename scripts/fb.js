@@ -209,7 +209,7 @@ function fbReady() {
                               </div>
                               <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">${eventName} (${eachEvent.place.name })<i class="material-icons right">close</i></span>
-                                <p>${eventDayCal}<br>${eachEvent.owner.name}<hr>${eachEvent.description}<hr><img class="activator gallery-img" src="${eachEvent.cover.source}" ></p>
+                                <p><span style="color:#2196f3;">${eventDayCal}<br>${eachEvent.owner.name}</span><hr>${eachEvent.description}<hr><img class="activator gallery-img" src="${eachEvent.cover.source}" ></p>
                               </div>
                             </div>
                             </li>`)
