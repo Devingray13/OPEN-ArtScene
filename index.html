@@ -8,7 +8,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
-    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
     <link rel="stylesheet" href="styles/normalize.css">
@@ -34,9 +34,36 @@
 
     <div id="login-splash">
 
-        <img src="images/gallery6splash.JPG"  alt="" class="splash-bg">
+        <div class="login-bg-wrapper">
 
-        <a id="login-button" class="waves-effect waves-light btn-large fb-login-button black" ><i class="material-icons right"></i>login with fb</a>
+
+            <section class="login-aligner">
+                <div class="login-main-bar">
+                    <h1 class="login-title">
+                        <span>O</span>
+                        <span style="color:red;">P</span>
+                        <span style="color:yellow;">E</span>
+                        <span style="color:blue;">N</span>
+                    </h1>
+                </div>
+
+                <img src="images/gallery6splash.JPG" alt="" class="splash-bg">
+
+
+
+
+                <a id="login-button" class="waves-effect waves-light btn-large fb-login-button black"><i class="material-icons right"></i>login with fb</a>
+
+
+            </section>
+
+        </div>
+
+
+
+
+
+
     </div>
 
 
@@ -47,101 +74,108 @@
         <section id="main-container">
 
 
-        <div class="section black main-nav">
-            <h1 id="home" class="header">OPEN</h1>
-            <ul class="right  main-nav-buttons">
-                <!-- <ul class="section-nav today-nav"> -->
-                <li><a class="waves-effect waves-light btn white " href="#about" id="main-nav-about" style="color:black;">ABOUT</a></li>
-                <li><a class="waves-effect waves-light btn blue" href="#upcoming" id="main-nav-upcoming">UPCOMING</a></li>
-                <li><a class="waves-effect waves-light btn red" href="#places" style="color:yellow;" id="main-nav-places">PLACES</a></li>
-                <li><a class="waves-effect waves-light btn yellow" href="#today" style="color:#2196f3;" id="main-nav-today">TODAY</a></li>
-            </ul>
-        </div>
+            <div class="section black main-nav">
+                <div class="main-header" id="home">
+                    <h1 id="title">
+                        <span>O</span>
+                        <span>P</span>
+                        <span>E</span>
+                        <span>N</span>
+                    </h1>
+                </div>
 
-        <section class="map-section">
-            <div id="map"></div>
-            <img src="images/gallery9.jpg"  alt="" class="splash-bg">
-        </section>
+                <ul class="right  main-nav-buttons">
+                    <!-- <ul class="section-nav today-nav"> -->
+                    <li><a class="waves-effect waves-light btn white " href="#about" id="main-nav-about" style="color:black;">ABOUT</a></li>
+                    <li><a class="waves-effect waves-light btn blue" href="#upcoming" id="main-nav-upcoming">UPCOMING</a></li>
+                    <li><a class="waves-effect waves-light btn red" href="#places" style="color:yellow;" id="main-nav-places">PLACES</a></li>
+                    <li><a class="waves-effect waves-light btn yellow" href="#today" style="color:#2196f3;" id="main-nav-today">TODAY</a></li>
+                </ul>
+            </div>
 
-        <div class="section yellow">
-            <div class="row container ">
-                <div class="each-section-header-nav">
-                    <ul class="section-nav today-nav">
+            <section class="map-section">
+                <div id="map"></div>
+                <!-- <img src="images/gallery9.jpg" alt="" class="map-bg"> -->
+            </section>
+
+            <div class="section yellow">
+                <div class="row container ">
+                    <div class="each-section-header-nav">
+                        <ul class="section-nav today-nav">
+                            <li><a href="#home">HOME</a></li>
+                            <li><a href="#places">PLACES</a></li>
+                            <li><a href="#upcoming">UPCOMING</a></li>
+                            <li><a href="#about">ABOUT</a></li>
+                        </ul>
+                        <h2 id="today" class="header">TODAY</h2>
+                    </div>
+
+
+                    <h3 id="no-events"><br>nothing happening today <br><br>
+            </h3>
+                    <ul class="daily-events" </ul>
+                </div>
+                <div class="outofboundsalert">
+                    note: events outside local Denver will not appear on map<br>
+                </div><br>
+            </div>
+
+            <div class="parallax-container">
+                <div class="parallax"><img src="images/gallery8.jpg"></div>
+            </div>
+            <div class="section red">
+                <div class="row container">
+                    <ul class="section-nav ">
                         <li><a href="#home">HOME</a></li>
-                        <li><a href="#places">PLACES</a></li>
+                        <li><a href="#today">TODAY</a></li>
                         <li><a href="#upcoming">UPCOMING</a></li>
                         <li><a href="#about">ABOUT</a></li>
                     </ul>
-                     <h2 id="today" class="header">TODAY</h2>
-                </div>
-
-                <br>
-                <h3 id="no-events"><br>nothing happening today <br><br>
-            </h3>
-                <ul class="daily-events" </ul>
+                    <h2 id="places" class="header">PLACES</h2></h2>
+                    <ul class="collapsible events-list" data-collapsible="accordion"></ul>
+                </div><br>
             </div>
-            <div class="outofboundsalert">
-                note: events outside local Denver will not appear on map<br>
-            </div><br>
-        </div>
+            <div class="parallax-container">
+                <div class="parallax"><img src="images/gallery4.jpg"></div>
+            </div>
+            <div class="section blue">
+                <div class="row container">
+                    <ul class="section-nav upcoming-nav">
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#today">TODAY</a></li>
+                        <li><a href="#places">PLACES</a></li>
+                        <li><a href="#about">ABOUT</a></li>
+                    </ul>
+                    <h2 id="upcoming" class="header">UPCOMING</h2>
+                    <ul class="collapsible popout upcoming-events" data-collapsible="accordion"></ul>
+                </div><br>
+            </div>
 
-        <div class="parallax-container">
-            <div class="parallax"><img src="images/gallery8.jpg"></div>
-        </div>
-        <div class="section red">
-            <div class="row container">
-                <ul class="section-nav ">
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#today">TODAY</a></li>
-                    <li><a href="#upcoming">UPCOMING</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                </ul>
-                <h2 id="places" class="header">PLACES</h2></h2>
-                <ul class="collapsible events-list" data-collapsible="accordion"></ul>
-            </div><br>
-        </div>
-        <div class="parallax-container">
-            <div class="parallax"><img src="images/gallery4.jpg"></div>
-        </div>
-        <div class="section blue">
-            <div class="row container">
-                <ul class="section-nav upcoming-nav">
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#today">TODAY</a></li>
-                    <li><a href="#places">PLACES</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                </ul>
-                <h2 id="upcoming" class="header">UPCOMING</h2>
-                <ul class="collapsible popout upcoming-events" data-collapsible="accordion"></ul>
-            </div><br>
-        </div>
-
-        <footer class="page-footer black">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h2 id="about" class="header">ABOUT</h2>
-                        <p class="grey-text text-lighten-4">OPEN takes (in our opinion) the 20 best art organizations in Denver and pulls together all their posted events from facebook. Questions? Comments? Think we left something out? <br><a href="mailto:open.artscene.denver.com" target="_top" style="color:red;">send us an email</a></p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <ul>
-                            <li><a href="#home" style="color:white;">HOME</a></li>
-                            <li><a href="#today" style="color:yellow;">TODAY</a></li>
-                            <li><a href="#places" style="color:red;">PLACES</a></li>
-                            <li><a href="#upcoming" style="color:#2196f3;">UPCOMING</a></li>
-                            <li><a href="" id="logout-button" style="color:white;">LOGOUT</a></li>
-                        </ul>
+            <footer class="page-footer black">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h2 id="about" class="header">ABOUT</h2>
+                            <i><p style="color:yellow;">OPEN is the front page of Denver's Art Scene. Events sourced from the Facebook pages of the city's best art organizations are presented here to represent what's going on where, when – here, now. A play on the name of the main kind of event likely to appear on the site, 'OPEN' also refers to our mission: to open the doors of The Art Scene to all.<br><br> Questions? Comments? Think we left something out? <br><br><b><a href="mailto:open.artscene.denver.com" target="_top" style="color:red;">send us an email</a></b><br></p></i><br>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <br><br>
+                            <ul>
+                                <li><a href="#home" style="color:white;">HOME</a></li>
+                                <li><a href="#today" style="color:yellow;">TODAY</a></li>
+                                <li><a href="#places" style="color:red;">PLACES</a></li>
+                                <li><a href="#upcoming" style="color:#2196f3;">UPCOMING</a></li>
+                                <li><a href="" id="logout-button" style="color:white;">LOGOUT</a></li>
+                            </ul>
+                            <br><br><br>
+                            <div>
+                                for more info about the Denver Art Scene visit
+                                <a class="text-lighten-4" href="http://onegoodeyeonline.com/">One Good Eye Online</a>
+                            </div>
 
 
-                </div>
-                <div class="footer-copyright" style="text-align:center;">
-                    <div class="container">
-                        for more info about the Denver Art Scene visit
-                        <a class="text-lighten-4" href="http://onegoodeyeonline.com/" >One Good Eye Online</a>
-                    </div>
-                </div>
-                <br>
-        </footer>
+                            <br>
+            </footer>
         </section>
         </div>
 

@@ -1,7 +1,5 @@
 $(fbReady)
 
-
-
 function fbReady() {
     $.ajaxSetup({
         cache: true
@@ -12,16 +10,10 @@ function fbReady() {
             version: 'v2.7',
             cookie: true,
             xfbml: true,
-            oauth:true
+            oauth: true
         })
 
-
-        // FB.Event.subscribe('auth.statusChange', statusChangeCallback)
-
         $('#loginbutton,#feedbutton').removeAttr('disabled');
-
-
-
 
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
@@ -52,15 +44,12 @@ function fbReady() {
             FB.login(statusChangeCallback, {
                 scope: 'email,public_profile'
             });
-
-        } )
+        })
 
         $('#logout-button').click(function() {
             console.log('okay')
             FB.logout(statusChangeCallback)
-
-        } )
-
+        })
 
         window.fbAsyncInit = function() {
             FB.init({
@@ -89,7 +78,10 @@ function fbReady() {
 
 
 
+
+
     let pageIds = {
+        "Art Gym Denver": "1435232676788138",
         "Black Cube Nomadic Museum": "564675637004520",
         "Boulder Museum of Contemporary Art": "174818304541",
         "Colorado Photographic Arts Center": "72034201289",
@@ -126,6 +118,7 @@ function fbReady() {
     let upcomingElement
     let eventDay0
     let eventDayCal
+    let eventEndDay
     let dateSortEvents = []
     let markerArray = [];
     let eventGalleryIDRelation
@@ -212,6 +205,7 @@ function fbReady() {
 
                     let eachEvent = eventArray[event]
                     eventName = eachEvent.name
+                    eventEndDay = moment(eachEvent.end_time)
                     eventDate = moment(eachEvent.start_time)
                     eventDay0 = moment(eachEvent.start_time)
                     eventDayCal = eventDate.format('LLL')
@@ -222,6 +216,8 @@ function fbReady() {
                         millisecond: 0
                     })
 
+
+
                     eventArray[event].eventGalleryLocation = galleryObj.location
 
 
@@ -231,7 +227,7 @@ function fbReady() {
                         // console.log(eventName)
                         // console.log($(`#${gallery}`))
 
-                        $('.daily-events').append(`<li class="daily-li">
+                        $('.daily-events').append(`<li class="daily-li focusable">
                             <div id="${eachEvent.id}" class="card">
                               <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="${eachEvent.cover.source}">
@@ -241,7 +237,7 @@ function fbReady() {
                               </div>
                               <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">${eventName} (${eachEvent.place.name })<i class="material-icons right">close</i></span>
-                                <p>${eventDayCal}<br>${eachEvent.owner.name}<hr>${eachEvent.description}</p>
+                                <p>${eventDayCal}<br>${eachEvent.owner.name}<hr>${eachEvent.description}<hr><img class="activator gallery-img" src="${eachEvent.cover.source}" ></p>
                               </div>
                             </div>
                             </li>`)
@@ -256,7 +252,7 @@ function fbReady() {
 
                     } else if (eventDay0.isAfter(today)) {
                         upcomingElement = `<li>
-                            <div class="collapsible-header upcoming-datetime" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
+                            <div class="collapsible-header upcoming-datetime focusable" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
                             <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info">${eachEvent.description}<br>
                             <hr><img class="activator gallery-img" src="${eachEvent.cover.source}"></span></div>
                             </li>`
@@ -330,7 +326,10 @@ function fbReady() {
                 if (mapMarker.icon === 'images/red_MarkerP.png') {
                     mapMarker.zIndex = 2
                 }
+
+
             }
+
             // console.log(markerArray)
             // $.each(markerArray, function(i) {
             //     console.log(markerArray[i])
