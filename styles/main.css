@@ -231,7 +231,7 @@ img {
     grid-template-columns: 2fr 5fr;
     grid-template-rows: 1fr 1fr 1fr;
     height: 75vh;
-    background-image: url('/images/gallery9.jpg');
+    background-image: url('/images/gallery9.JPG');
     background-size: cover;
 }
 .map-bg {
