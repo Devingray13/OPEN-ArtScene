@@ -1,10 +1,9 @@
-var map;
+var map
 function initMap() {
     var denver = {
         lat: 39.7392,
         lng: -104.9903
     };
-
     var myOptions = {
         zoom: 13,
         center: denver,
@@ -25,82 +24,7 @@ function initMap() {
     })
 }
 
-
-
 var styleJSON =
-// [{
-//         "stylers": [{
-//             "color": "#f6fff9"
-//         }]
-//     },
-//     {
-//         "elementType": "geometry.fill",
-//         "stylers": [{
-//             "visibility": "off"
-//
-//         }]
-//     },
-//     {
-//         "elementType": "labels.text.fill",
-//         "stylers": [{
-//             "color": "#d30000"
-//         }]
-//     },
-//     {
-//         "featureType": "administrative",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "administrative.land_parcel",
-//         "elementType": "labels",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "poi",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "poi",
-//         "elementType": "labels.text",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "road",
-//         "elementType": "geometry.fill",
-//         "stylers": [{
-//             "color": "#d30000"
-//         }]
-//     },
-//     {
-//         "featureType": "road",
-//         "elementType": "labels.icon",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "road.local",
-//         "elementType": "labels",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     },
-//     {
-//         "featureType": "transit",
-//         "stylers": [{
-//             "visibility": "off"
-//         }]
-//     }
-// ]
 [
   {
     "elementType": "geometry.fill",

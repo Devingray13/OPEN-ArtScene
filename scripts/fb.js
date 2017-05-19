@@ -1,6 +1,8 @@
 $(fbReady)
 
 function fbReady() {
+
+// FB API SDK init
     $.ajaxSetup({
         cache: true
     });
@@ -16,15 +18,11 @@ function fbReady() {
         $('#loginbutton,#feedbutton').removeAttr('disabled');
 
         function statusChangeCallback(response) {
-            console.log('statusChangeCallback');
-            console.log(response);
             $('.fb-login-button').click(function(response) {
-                console.log(response)
             })
 
             if (response.status === 'connected') {
                 let loginAccessToken = response.authResponse.accessToken
-                console.log('success')
                 $('#login-splash').hide()
                 $('#actual-site').show()
                 appReady()
@@ -40,14 +38,12 @@ function fbReady() {
         }
 
         $('#login-button').click(function() {
-            console.log('okay')
             FB.login(statusChangeCallback, {
                 scope: 'email,public_profile'
             });
         })
 
         $('#logout-button').click(function() {
-            console.log('okay')
             FB.logout(statusChangeCallback)
         })
 
@@ -76,10 +72,7 @@ function fbReady() {
         }(document, 'script', 'facebook-jssdk'));
     })
 
-
-
-
-
+// gallery ID data JSON
     let pageIds = {
         "Art Gym Denver": "1435232676788138",
         "Black Cube Nomadic Museum": "564675637004520",
@@ -104,6 +97,7 @@ function fbReady() {
         "Vicki Myhren Gallery": "171767208758"
     }
 
+// initialize /g variables
     let eventObjects = {}
     let count = 0
     let allPages = []
@@ -123,17 +117,14 @@ function fbReady() {
     let markerArray = [];
     let eventGalleryIDRelation
 
+// initialize time reference
     let today = new Date()
     today.setHours(0, 0, 0, 0)
     today = moment(today)
-    console.log(today)
 
-
-
+//FB API SDK GET requests / custom promises
     function retrieveData() {
-
         $.each(pageIds, function(page, id) {
-            // console.log(page, id)
             const promise1 = new Promise(function(resolve, reject) {
                 FB.api(
                     "/" + id + "?fields=id,about,cover,description,location,mission,name,website",
@@ -153,30 +144,21 @@ function fbReady() {
 
             const pagePromise = Promise.all([promise1, promise2]);
             allPages.push(pagePromise)
-
         })
 
         Promise.all(allPages).then(function(galleryWithEvents) {
-            // console.log(galleryWithEvents)
             filterCurrentEvents(galleryWithEvents)
         })
 
-
+//start organizing data
         function filterCurrentEvents(galleryWithEvents) {
-
-
             $.each(galleryWithEvents, function(eachGallery) {
                 eventArray = eventArray.concat(galleryWithEvents[eachGallery][1])
-                console.log(galleryWithEvents[eachGallery][1])
-
                 gallery = galleryWithEvents[eachGallery][0].name
                 galleryObj = galleryWithEvents[eachGallery][0]
 
-
-                // console.log(gallery)
-                // console.log(galleryObj)
-                // console.log(eventArray)
-                $('.events-list').append(`<li>
+//dynamically generate list of galleries with info
+                $('.galleries-list').append(`<li class="focusable">
                     <div class="collapsible-header" > ${gallery} </div>
                     <div class="collapsible-body">
                         <ul id="${gallery}" class="collapsible popout" data-collapsible="accordion">
@@ -190,22 +172,19 @@ function fbReady() {
 
             appendEvents()
 
+//sort chronologically
             function appendEvents() {
-                console.log(eventArray)
                 eventArray.sort(function(a, b) {
                     return rawNumbers(a.start_time) - rawNumbers(b.start_time)
                 })
-                console.log(eventArray[0])
-
                 function rawNumbers(x) {
                     return x.replace(/[^0-9]/g, '')
                 }
-                $.each(eventArray, function(event) {
-                    // console.log(eventArray[event])
 
+//initialize event-specific time references and backup location reference
+                $.each(eventArray, function(event) {
                     let eachEvent = eventArray[event]
                     eventName = eachEvent.name
-                    eventEndDay = moment(eachEvent.end_time)
                     eventDate = moment(eachEvent.start_time)
                     eventDay0 = moment(eachEvent.start_time)
                     eventDayCal = eventDate.format('LLL')
@@ -216,17 +195,10 @@ function fbReady() {
                         millisecond: 0
                     })
 
-
-
                     eventArray[event].eventGalleryLocation = galleryObj.location
 
-
+//dynamically generate list of current events
                     if (eventDay0.isSame(today)) {
-                        // console.log(eventDate)
-                        // console.log(eachEvent)
-                        // console.log(eventName)
-                        // console.log($(`#${gallery}`))
-
                         $('.daily-events').append(`<li class="daily-li focusable">
                             <div id="${eachEvent.id}" class="card">
                               <div class="card-image waves-effect waves-block waves-light">
@@ -242,6 +214,7 @@ function fbReady() {
                             </div>
                             </li>`)
 
+//if there are events, hide 'no events' alert, export location data to maps API
                         if ($('.daily-li').size() > 0) {
                             $('#no-events').hide()
                         }
@@ -249,48 +222,45 @@ function fbReady() {
                         mapIcon = 'images/yellow_MarkerT.png'
                         doDaMapThang(eachEvent)
 
-
+//dynamically generate list of future events, export location data
                     } else if (eventDay0.isAfter(today)) {
-                        upcomingElement = `<li>
-                            <div class="collapsible-header upcoming-datetime focusable" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
-                            <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info">${eachEvent.description}<br>
-                            <hr><img class="activator gallery-img" src="${eachEvent.cover.source}"></span></div>
-                            </li>`
-
+                        upcomingElement =
+                        `<li>
+                        <div class="collapsible-header upcoming-datetime focusable" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
+                        <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info">${eachEvent.description}<br>
+                        <hr><img class="activator gallery-img" src="${eachEvent.cover.source}"></span></div>
+                        </li>`
                         $('.upcoming-events').append(upcomingElement)
+
                         mapIcon = 'images/blue_MarkerU.png'
                         doDaMapThang(eachEvent)
-
                     }
-
                 })
             }
 
+//interpret location data with maps API
             function doDaMapThang(eachEvent) {
                 // console.log(eachEvent)
                 mapEvents(eachEvent)
             }
-
             function getEventLocation(eachEvent) {
                 if (eachEvent.place.hasOwnProperty('location')) {
                     return {
                         'lat': eachEvent.place.location.latitude,
                         'lng': eachEvent.place.location.longitude
                     }
-                    // console.log('location: ', eventName, eventLocation)
                 } else {
                     return {
                         'lat': eachEvent.eventGalleryLocation.latitude,
                         'lng': eachEvent.eventGalleryLocation.longitude
                     }
                 }
-
             }
 
+//plot events on map with info reference, set interaction parameters
+            let infowindow = new google.maps.InfoWindow();
             function mapEvents(eachEvent) {
                 let eventLocation = getEventLocation(eachEvent)
-                // console.log(eachEvent.name)
-                // console.log(eachEvent)
                 var mapMarker = new google.maps.Marker({
                     position: eventLocation,
                     map: map,
@@ -298,59 +268,28 @@ function fbReady() {
                     name: eachEvent.name,
                     id: eachEvent.id,
                     image: eachEvent.cover.source,
+                    animation: google.maps.Animation.DROP,
                     zIndex: 3
                 })
-
-                // markerArray.push(mapMarker)
-
                 let linkVar = `<a href="#${mapMarker.id}"><img src="${mapMarker.image}" class="info-window-img"><br>${mapMarker.name}</a>`
 
-                let infowindow = new google.maps.InfoWindow({
-                    content: linkVar
-                });
                 mapMarker.addListener('click', function() {
+                    infowindow.setContent(linkVar)
                     infowindow.open(map, mapMarker);
                 })
                 map.addListener('click', function() {
                     infowindow.close(map, mapMarker);
                 })
-
                 map.addListener('mouseout', function() {
                     infowindow.close(map, mapMarker);
                 })
-
                 if (mapMarker.icon === 'images/yellow_MarkerT.png') {
                     mapMarker.zIndex = 4
                 }
-
                 if (mapMarker.icon === 'images/red_MarkerP.png') {
                     mapMarker.zIndex = 2
                 }
-
-
             }
-
-            // console.log(markerArray)
-            // $.each(markerArray, function(i) {
-            //     console.log(markerArray[i])
-            //
-            // let linkVar = `<a href="#${markerArray[i].id}"><img src="${markerArray[i].image}" class="info-window-img"><br>${markerArray[i].name}</a>`
-            //
-            // let infowindow = new google.maps.InfoWindow({
-            //     content: linkVar
-            // });
-            // markerArray[i].addListener('click', function() {
-            //     infowindow.open(map, markerArray[i]);
-            // })
-            // map.addListener('click', function() {
-            //     infowindow.close(map, markerArray[i]);
-            // })
-            // map.addListener('mouseout', function() {
-            //     infowindow.close(map, markerArray[i]);
-            // })
-            // })
-
         }
-
     }
 }
