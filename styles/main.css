@@ -1,4 +1,46 @@
-@media (max-width: 700px) {
+@media (max-width:500px){
+    .hidden-nav{
+        display:inline;
+    }
+    .main-nav-buttons{
+        display: none;
+    }
+    .main-nav{
+        display:flex;
+        flex-direction:column;
+        justify-content: flex-start;
+    }
+    .gallery-info{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    h2{
+        font-size: 350%;
+        text-align: center;
+    }
+    .upcoming-list-time, .upcoming-list-place {
+        display: none;
+    }
+    .upcoming-list-title{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width:100%;
+        text-align: left;
+    }
+    .upcoming-datetime{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .page-footer li,a{
+        text-align: left;
+    }
+    .fb-login-button {
+        width: auto;
+    }
+
+}
+
+@media (max-width: 700px) and (min-width:500px) {
     .fb-login-button {
         width: auto;
     }
@@ -6,15 +48,19 @@
         display: grid;
         grid-template-rows: .25fr 1fr;
         grid-template-columns: 1fr;
+        height:auto;
     }
     .main-header {
         grid-row: 1/2;
         width: 100%;
         grid-column: 1/2;
     }
+    .hidden-nav{
+        display:none;
+    }
     .main-nav-buttons {
         display: grid;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr;
         grid-row: 2/3;
         grid-column: 1/2;
@@ -35,20 +81,37 @@
     #main-nav-today {
         grid-row: 4/5;
     }
+    h2{
+        font-size: 450%;
+    }
     .section-nav li {
         grid-row: span1;
     }
     .section-nav {
         width: 100%;
         display: grid;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    .upcoming-list-title{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .upcoming-datetime{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .page-footer li,a{
+        text-align: left;
+    }
+    .onegoodeyepromo{
+        text-align: center;
     }
 }
 @media (max-width: 1200px) and (min-width:700px) {
     .main-nav {
         display: grid;
         grid-template-rows: 1fr 1fr;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr 1fr;
     }
     .main-header {
         display: grid;
@@ -56,12 +119,15 @@
         width: 100%;
         grid-column: 1/3;
     }
+    .hidden-nav{
+        display:none;
+    }
     .main-nav-buttons {
         display: flex;
         grid-row: 2/3;
         grid-column: 1/4;
         justify-content: space-around;
-        align-self: center;
+        /*align-self: center;*/
     }
     .main-nav-buttons>li, a {
         display: flex;
@@ -71,15 +137,27 @@
         text-align: center;
         justify-content: center;
     }
+    h2{
+        font-size: 450%;
+    }
     .section-nav {
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
+    .page-footer li,a{
+        text-align: left;
+    }
+    .onegoodeyepromo{
+        text-align: center;
+    }
 }
 @media (min-width: 1200px) {
     .main-nav {
         grid-template-columns: 1fr 2fr;
+    }
+    .hidden-nav{
+        display:none;
     }
     .main-nav-buttons {
         display: flex;
@@ -88,6 +166,9 @@
     }
     .main-nav-buttons li,a {
         justify-content: center;
+    }
+    h2{
+        font-size: 450%;
     }
     #title {
         grid-column: 1/2;
@@ -100,6 +181,9 @@
     }
     .section-nav>li {
         margin: 2em;
+    }
+    .page-footer li,a{
+        text-align: left;
     }
 }
 
@@ -118,8 +202,8 @@ img {
 
 #login-splash {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     height: 100vh;
     background: black;
 }
@@ -248,6 +332,15 @@ img {
 
 /*content sections*/
 
+.parallax > img {
+    height:auto;
+    object-fit: cover;
+}
+
+.parallax-container{
+    height:400px;
+}
+
 .each-header-section-nav {
     display: flex;
     flex-direction: row;
@@ -258,7 +351,6 @@ img {
     font-weight: lighter;
 }
 h2 {
-    font-size: 450%;
     line-height: 100%;
     margin: .5em;
 }
@@ -326,6 +418,10 @@ h2 {
 
 #about {
     color: white;
+}
+
+.page-footer a{
+    text-align: left;
 }
 
 

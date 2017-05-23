@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -56,8 +56,15 @@
                             <span>P</span>
                             <span>E</span>
                             <span>N</span>
+                            <a href="#" data-activates="mobile-demo" class="button-collapse hidden-nav"><i class="material-icons">menu</i></a>
                         </h1>
                     </div>
+                     <ul class="side-nav" id="mobile-demo">
+                         <li><a class="waves-effect waves-light btn yellow" href="#today" style="color:#2196f3;" id="main-nav-today">TODAY</a></li>
+                         <li><a class="waves-effect waves-light btn red" href="#places" style="color:yellow;" id="main-nav-places">PLACES</a></li>
+                         <li><a class="waves-effect waves-light btn blue" href="#upcoming" id="main-nav-upcoming">UPCOMING</a></li>
+                         <li><a class="waves-effect waves-light btn black" href="#about" id="main-nav-about" style="color:white;">ABOUT</a></li>
+                     </ul>
                     <ul class=" main-nav-buttons">
                         <li><a class="waves-effect waves-light btn yellow" href="#today" style="color:#2196f3;" id="main-nav-today">TODAY</a></li>
                         <li><a class="waves-effect waves-light btn red" href="#places" style="color:yellow;" id="main-nav-places">PLACES</a></li>
@@ -140,9 +147,13 @@
                                     <li><a href="" id="logout-button" style="color:white;">LOGOUT</a></li>
                                 </ul>
                                 <br><br><br>
-                                <div class="focusable">
-                                    for more info about the Denver Art Scene <br> visit
+                                <div class="focusable onegoodeyepromo">
+                                    for more info about the Denver Art Scene visit <br>
                                     <a class="text-lighten-4" href="http://onegoodeyeonline.com/">One Good Eye Online</a>
+                                </div>
+                                <br>
+                                <div class="focusable">
+                                    Will Meier 2017
                                 </div>
                                 <br>
                             </div>
