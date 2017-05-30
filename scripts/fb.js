@@ -2,13 +2,20 @@ $(fbReady)
 
 function fbReady() {
 
+    let fbID
+    if (window.location.hostname === 'localhost'){
+        fbID = 1827510060909059
+    } else {
+        fbID = 1931532333798494
+    }
+
 // FB API SDK init
     $.ajaxSetup({
         cache: true
     });
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function() {
         FB.init({
-            appId: '1931532333798494',
+            appId: fbID,
             version: 'v2.7',
             cookie: true,
             xfbml: true,
@@ -18,7 +25,7 @@ function fbReady() {
         $('#loginbutton,#feedbutton').removeAttr('disabled');
 
         function statusChangeCallback(response) {
-            $('.fb-login-button').click(function(response) {
+            $('#login-button').click(function(response) {
             })
 
             if (response.status === 'connected') {
@@ -49,7 +56,8 @@ function fbReady() {
 
         window.fbAsyncInit = function() {
             FB.init({
-                appId: '1931532333798494',
+                appID: fbID,
+                // appId: '1931532333798494',
                 cookie: true,
                 xfbml: true,
                 version: 'v2.8',
@@ -67,7 +75,7 @@ function fbReady() {
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1931532333798494";
+            js.src = `//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=${fbID}`;
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     })
