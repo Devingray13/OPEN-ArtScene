@@ -60,7 +60,7 @@ module.exports = {
       .assert.visible('#map')
       .assert.elementPresent('.individual-gallery')
       .assert.elementPresent('.individual-upcoming')
-      .assert.visible('#no-events, .daily-li')
+      .assert.visible('.daily-li')
 
       .end();
   },
@@ -91,28 +91,31 @@ module.exports = {
       .assert.hidden('.upcoming-list-time')
 
       .end();
-  },
-  'map content correct' : function (browser) {
-    browser
-      .url('http://localhost:8080/index.html')
-      .waitForElementPresent('#login-button', 1000)
-      .execute(function(){
-          $('#login-button').click()
-      })
-      .pause(1000)
-      .windowHandles(function(result){
-          let temp = result.value[1]
-          this.switchWindow(temp)
-      })
-      .setValue('input[name=email]','open.artscene.denver@gmail.com')
-      .setValue('input[name=pass]','frontpageofdenversartscene')
-      .click('#loginbutton')
-       .pause(1000)
-      .windowHandles(function(result){
-          let temp = result.value[0]
-          this.switchWindow(temp)
-      })
-     
-      .end();
   }
+  // 'nav links work' : function (browser) {
+  //   browser
+  //     .url('http://localhost:8080/index.html')
+  //     .waitForElementPresent('#login-button', 1000)
+  //     .execute(function(){
+  //         $('#login-button').click()
+  //     })
+  //     .pause(1000)
+  //     .windowHandles(function(result){
+  //         let temp = result.value[1]
+  //         this.switchWindow(temp)
+  //     })
+  //     .setValue('input[name=email]','open.artscene.denver@gmail.com')
+  //     .setValue('input[name=pass]','frontpageofdenversartscene')
+  //     .click('#loginbutton')
+  //      .pause(1000)
+  //     .windowHandles(function(result){
+  //         let temp = result.value[0]
+  //         this.switchWindow(temp)
+  //     })
+  //     .click('.today')
+  //     .elementIdLocationInView(function(result){
+  //         console.log(result)
+  //     })
+  //     .end();
+  // }
 };
