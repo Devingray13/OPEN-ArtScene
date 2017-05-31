@@ -1,6 +1,7 @@
-var map
+var map,
+    denver
 function initMap() {
-    var denver = {
+    denver = {
         lat: 39.7392,
         lng: -104.9903
     };

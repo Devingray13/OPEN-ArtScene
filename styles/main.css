@@ -327,7 +327,8 @@ img {
     z-index: 2;
 }
 .info-window-img {
-    width: 20em;
+    width: 50%;
+    height:50%;
 }
 
 /*content sections*/

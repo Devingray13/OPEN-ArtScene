@@ -25,7 +25,7 @@ function fbReady() {
         $('#loginbutton,#feedbutton').removeAttr('disabled');
 
         function statusChangeCallback(response) {
-            $('#login-button').click(function(response) {
+            $('.fb-login-button').click(function(response) {
             })
 
             if (response.status === 'connected') {
@@ -166,12 +166,12 @@ function fbReady() {
                 galleryObj = galleryWithEvents[eachGallery][0]
 
 //dynamically generate list of galleries with info
-                $('.galleries-list').append(`<li class="focusable">
+                $('.galleries-list').append(`<li class="focusable individual-gallery">
                     <div class="collapsible-header" > ${gallery} </div>
                     <div class="collapsible-body">
                         <ul id="${gallery}" class="collapsible popout" data-collapsible="accordion">
                         <li class="upcoming-info-body">
-                            <div class="gallery-info "><img class="gallery-img" src="${galleryObj.cover.source}"><br> ${galleryObj.about}<hr><span style="color:#2196f3;">${galleryObj.location.street}<span><hr><a href="${galleryObj.website}" style="color:yellow;">website</a></div><br>
+                            <div class="gallery-info" style="white-space:pre-wrap;"><img class="gallery-img" src="${galleryObj.cover.source}"><br> ${galleryObj.about}<hr><span style="color:#2196f3;">${galleryObj.location.street}<span><hr><a href="${galleryObj.website}" style="color:yellow;">website</a></div><br>
                         </li>
                         </ul>
                     </div>
@@ -217,7 +217,7 @@ function fbReady() {
                               </div>
                               <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">${eventName} (${eachEvent.place.name })<i class="material-icons right">close</i></span>
-                                <p><span style="color:#2196f3;">${eventDayCal}<br>${eachEvent.owner.name}</span><hr>${eachEvent.description}<hr><img class="activator gallery-img" src="${eachEvent.cover.source}" ></p>
+                                <p style="white-space:pre-wrap;"><span style="color:#2196f3;">${eventDayCal}<br>${eachEvent.owner.name}</span><hr>${eachEvent.description}<hr><img class="activator gallery-img" src="${eachEvent.cover.source}" ></p>
                               </div>
                             </div>
                             </li>`)
@@ -234,14 +234,15 @@ function fbReady() {
                     } else if (eventDay0.isAfter(today)) {
                         upcomingElement =
                         `<li>
-                        <div class="collapsible-header upcoming-datetime focusable" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
-                        <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info">${eachEvent.description}<br>
+                        <div class="collapsible-header upcoming-datetime focusable individual-upcoming" id="${eachEvent.id}"><span class="upcoming-list-time">${eventDayCal}</span> <span class="upcoming-list-title">${eventName}</span> <span class="upcoming-list-place"> ${eachEvent.place.name }</span></div>
+                        <div class="collapsible-body upcoming-info-body " ><span class="upcoming-info" style="white-space:pre-wrap;">${eachEvent.description}<br>
                         <hr><img class="activator gallery-img" src="${eachEvent.cover.source}"></span></div>
                         </li>`
                         $('.upcoming-events').append(upcomingElement)
 
                         mapIcon = 'images/blue_MarkerU.png'
                         doDaMapThang(eachEvent)
+
                     }
                 })
             }
@@ -283,13 +284,16 @@ function fbReady() {
 
                 mapMarker.addListener('click', function() {
                     infowindow.setContent(linkVar)
-                    infowindow.open(map, mapMarker);
+                    infowindow.open(map, mapMarker)
+                    map.setCenter(denver)
                 })
                 map.addListener('click', function() {
-                    infowindow.close(map, mapMarker);
+                    infowindow.close(map, mapMarker)
+                    map.setCenter(denver)
                 })
                 map.addListener('mouseout', function() {
-                    infowindow.close(map, mapMarker);
+                    infowindow.close(map, mapMarker)
+                    map.setCenter(denver)
                 })
                 if (mapMarker.icon === 'images/yellow_MarkerT.png') {
                     mapMarker.zIndex = 4
