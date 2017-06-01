@@ -10,6 +10,13 @@ module.exports = {
       .assert.visible('#loader-wrapper, #login-splash, #actual-site')
       .end();
   },
+  'loader present' : function (browser) {
+    browser
+      .url('http://localhost:8080/index.html')
+      .waitForElementVisible('#loader-wrapper', 1000)
+      .assert.visible('#loader-wrapper')
+      .end();
+  },
   'logged in' : function (browser) {
     browser
       .url('http://localhost:8080/index.html')
@@ -91,31 +98,30 @@ module.exports = {
       .assert.hidden('.upcoming-list-time')
 
       .end();
+  },
+  'nav links work' : function (browser) {
+    browser
+      .url('http://localhost:8080/index.html')
+      .waitForElementPresent('#login-button', 1000)
+      .execute(function(){
+          $('#login-button').click()
+      })
+      .pause(1000)
+      .windowHandles(function(result){
+          let temp = result.value[1]
+          this.switchWindow(temp)
+      })
+      .setValue('input[name=email]','open.artscene.denver@gmail.com')
+      .setValue('input[name=pass]','frontpageofdenversartscene')
+      .click('#loginbutton')
+       .pause(1000)
+      .windowHandles(function(result){
+          let temp = result.value[0]
+          this.switchWindow(temp)
+      })
+      .click('.today')
+      .assert.visible('#today')
+      .assert.visible('#upcoming')
+      .end();
   }
-  // 'nav links work' : function (browser) {
-  //   browser
-  //     .url('http://localhost:8080/index.html')
-  //     .waitForElementPresent('#login-button', 1000)
-  //     .execute(function(){
-  //         $('#login-button').click()
-  //     })
-  //     .pause(1000)
-  //     .windowHandles(function(result){
-  //         let temp = result.value[1]
-  //         this.switchWindow(temp)
-  //     })
-  //     .setValue('input[name=email]','open.artscene.denver@gmail.com')
-  //     .setValue('input[name=pass]','frontpageofdenversartscene')
-  //     .click('#loginbutton')
-  //      .pause(1000)
-  //     .windowHandles(function(result){
-  //         let temp = result.value[0]
-  //         this.switchWindow(temp)
-  //     })
-  //     .click('.today')
-  //     .elementIdLocationInView(function(result){
-  //         console.log(result)
-  //     })
-  //     .end();
-  // }
 };

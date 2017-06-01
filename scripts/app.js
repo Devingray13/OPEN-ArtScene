@@ -196,9 +196,7 @@ let appReady = () => {
                                 <span class="upcoming-list-place">${eachEvent.place.name}</span>
                             </div>
                             <div class="collapsible-body upcoming-info-body">
-                                <span class="upcoming-info" style="white-space:pre-wrap;"> ${eventDescription}
-                                    <br>
-                                    <hr>
+                                <span class="upcoming-info" style="white-space:pre-wrap;"> ${eventDescription} <br> <hr>
                                     <img class="activator gallery-img" src="${eachEvent.cover.source}">
                                 </span>
                             </div>
