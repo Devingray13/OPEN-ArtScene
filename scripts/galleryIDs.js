@@ -1,5 +1,6 @@
 let pageIds = {
     "Art Gym Denver": "1435232676788138",
+    "Black Book Gallery": "10150147962645361",
     "Black Cube Nomadic Museum": "564675637004520",
     "Boulder Museum of Contemporary Art": "174818304541",
     "Colorado Photographic Arts Center": "72034201289",

@@ -50,7 +50,7 @@ let appReady = () => {
         })
 
 //start organizing data
-        let filterCurrentEvents = (galleryWithEvents) => {
+        let filterCurrentEvents = (galleryWithEvents)=>{
             let eventArray = [],
                 galleryObj
             for(let eachGallery in galleryWithEvents){
@@ -89,8 +89,8 @@ let appReady = () => {
             }
 
 //plot events on map with info reference, set interaction parameters
-            let infowindow = new google.maps.InfoWindow(),
-                mapEvents = (eachEvent) => {
+            let infowindow = new google.maps.InfoWindow()
+                let mapEvents=(eachEvent)=>{
                     let eventLocation = getEventLocation(eachEvent),
                         mapMarker = new google.maps.Marker({
                             position: eventLocation,
@@ -125,13 +125,13 @@ let appReady = () => {
                             }
                         })()
                 }
-            let doDaMapThang = (eachEvent) => {
+            let doDaMapThang=(eachEvent)=> {
                 let mapIcon
                 mapEvents(eachEvent)
             }
 
 //sort chronologically and append events
-            let appendEvents = (() => {
+            let appendEvents=(()=> {
                 let rawNumbers = (x) => x.replace(/[^0-9]/g, '')
                 eventArray.sort(function(a, b) {
                     return rawNumbers(a.start_time) - rawNumbers(b.start_time)

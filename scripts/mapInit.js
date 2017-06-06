@@ -1,7 +1,5 @@
-let
-map,
-denver,
-initMap =()=>{
+var map, denver,
+initMap=()=>{
     denver = {
         lat: 39.7392,
         lng: -104.9903

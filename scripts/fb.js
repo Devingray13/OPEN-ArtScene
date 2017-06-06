@@ -23,21 +23,21 @@ $(fbReady = (() => {
 
         $('#loginbutton,#feedbutton').removeAttr('disabled');
 
-        let statusChangeCallback = (response) => {
+        let statusChangeCallback=(response)=>{
             $('.fb-login-button').click(function(response) {})
-            let wholeThang = () => {
-                appReady()
+            wholeThang=()=>{
                 initMap()
-            }
+                appReady()
+            },
 
-            let showActualSite = () => {
+            showActualSite = () => {
                 $('#login-splash').hide()
                 $('#actual-site').show()
                 $('body').removeClass('loaded')
                 $(window).load(loadIt())
-            }
+            },
 
-            let hideActualSite = () => {
+            hideActualSite = () => {
                 $('#login-splash').show()
                 $('#actual-site').hide()
                 $('body').addClass('loaded')
